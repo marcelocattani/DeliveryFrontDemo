@@ -1,0 +1,19 @@
+<div class="contenedor">
+    <div class="logo pointer" [routerLink]="[ '/home']">
+        <span>EL BUEN SABOR</span>
+        <img src="../../../../assets/img/logo/logo.jpg" alt="">
+    </div>
+    <div class="buscador">
+        <form *ngIf="validarRuta()">
+            <input placeholder="Ej. Hamburguesa Doble" (keyup.enter)="buscar(termino.value)" #termino>
+            <button (click)="buscar(termino.value)"><i class="fas fa-search"></i></button>
+        </form>
+    </div>
+    <div class="comandos">
+
+        <button *ngIf="!this.authService.logueado" mat-raised-button class="my-agregar" (click)="this.authService.ingresar()">Ingresar <mat-icon>person</mat-icon></button>
+        <button *ngIf="this.authService.logueado" mat-raised-button class="my-editar" [routerLink]="[ '/manager']">Administración <mat-icon>person</mat-icon></button>
+        <button *ngIf="this.authService.logueado" mat-raised-button class="my-eliminar" (click)="this.authService.salir()">Salir <mat-icon>person</mat-icon></button>
+
+    </div>
+</div>

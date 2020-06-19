@@ -1,0 +1,40 @@
+<div class="contenedor">
+
+    <!-- SELECTOR DE MODOS -->
+    <mat-form-field appereance="standart">
+        <mat-label>Secciones</mat-label>
+        <mat-select [(value)]="valueSelected" disableOptionCentering>
+            <mat-option [value]="0">Platos</mat-option>
+            <mat-option [value]="1">Articulos</mat-option>
+            <mat-option [value]="2">Usuarios</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <!-- SECCION DE PLATOS -->
+    <mat-tab-group mat-stretch-tabs *ngIf="valueSelected == 0">
+        <mat-tab label="Plato">
+            <app-plato-screen></app-plato-screen>
+        </mat-tab>
+        <mat-tab label="Categoria Plato">
+            <app-categoria-plato-screen></app-categoria-plato-screen>
+        </mat-tab>
+        <mat-tab label="Unidad De Medida">
+            <app-medida-plato-screen></app-medida-plato-screen>
+        </mat-tab>
+    </mat-tab-group>
+
+    <!-- SECCION DE ARTICULOS -->
+    <mat-tab-group mat-stretch-tabs *ngIf="valueSelected == 1">
+        <mat-tab label="Articulo">
+            <app-articulo-screen></app-articulo-screen>
+        </mat-tab>
+        <mat-tab label="Categoria Articulo">
+            <app-categoria-articulo-screen></app-categoria-articulo-screen>
+        </mat-tab>
+        <mat-tab label="Unidad De Medida">
+            <app-medida-articulo-screen></app-medida-articulo-screen>
+        </mat-tab>
+    </mat-tab-group>
+
+
+</div>

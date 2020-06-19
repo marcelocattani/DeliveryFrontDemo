@@ -1,0 +1,75 @@
+<!-- <div class="container"> -->
+<mat-sidenav-container>
+    <mat-sidenav [(opened)]="sidenavOpened">
+        <div class="navegador">
+            <mat-form-field appearance="standard">
+                <mat-label>CATEGORÍA</mat-label>
+                <mat-select [(value)]="selected" disableOptionCentering (selectionChange)="cambioSeleccion($event)">
+                    <mat-option [value]="0">Todo</mat-option>
+                    <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
+                        {{categoria.denominacion}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="standard">
+                <mat-label>Buscar</mat-label>
+                <input matInput placeholder="Ej. Pizza" (keyup.enter)="cargarPlatosPor(termino.value)" #termino>
+                <mat-icon matSuffix (click)="cargarPlatosPor(termino.value)" class="pointer">search</mat-icon>
+            </mat-form-field>
+        </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <div class="cabecera">
+            <span class="bienvenida">Busca lo que mas te guste</span>
+            <!-- boton de filtros -->
+            <button mat-button (click)="sidenavOpened = !sidenavOpened" id="tune">
+                Filtrar <mat-icon>tune</mat-icon>
+            </button>
+
+        </div>
+        <!-- ============================================================ -->
+        <!-- ACA VA TODO EL CONTENIDO  -->
+        <!-- ============================================================ -->
+        <!-- tarjetas  -->
+        <div class="mensajeDeNulo" *ngIf="platos.length < 1">
+            <span>No hay elementos para mostrar</span>
+        </div>
+        <div class="card-group">
+
+            <div class="tarjeta" *ngFor="let plato of platos">
+                <div class="card" [class.mat-elevation-z8]="true">
+                    <span class="rubro">{{plato.denominacion}}</span>
+                    <div class="cont-nombre">
+                        <div class="ingredientes animated flipInY">
+                            <ul>
+                                <li *ngFor="let detalle of plato.detallePlato">{{detalle.articulo.denominacion}}</li>
+                            </ul>
+                        </div>
+                        <span class="titulo">{{plato.categoriaPlato.denominacion}}</span>
+                        <img [src]="plato.imagen" class="card-img-top" alt="Cargando imagen..."
+                            onError="this.src='assets/img/noImage.jpg'">
+                    </div>
+                    <div class="card-body">
+                        <span>${{plato.precioVenta | number : '1.2-2'}}</span>
+                        <ng-container *ngIf="this.authService.logueado ; else noLogueado">
+                            <button mat-raised-button>Añadir <i class="fas fa-cart-plus"></i></button>
+                        </ng-container>
+                        <ng-template #noLogueado>
+                            <button mat-button  (click)="this.authService.ingresar()"
+                                matTooltip="Ingresa Para Hacer Tus Pedidos"
+                                matTooltipClass="my-tooltip-red">Ingresa</button>
+                        </ng-template>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+<!-- </div> -->

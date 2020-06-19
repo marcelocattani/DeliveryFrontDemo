@@ -1,0 +1,35 @@
+<div class="container my-cursor-food">
+    <div id="cabecera">
+        <div class="titulo my-shadow animated fadeInLeft">
+            <div class="texto animated fadeInRight">BUSCÁ, PEDÍ Y DISFRUTÁ</div>
+        </div>
+        <form class="buscador">
+            <input type="text" placeholder="Ej: Hamburguesa Doble" (keyup.enter)="buscar(termino.value)" #termino>
+            <button mat-button href="#" class="my-shadow" (click)="buscar(termino.value)" >BUSCAR</button>
+        </form>
+        <div class="informacion">
+            <div class="horarios animated fadeIn">
+                <p>Horarios de Atención</p>
+                <ul>
+                    <li>Lunes a Domingos de 20:00 a 24:00</li>
+                    <li>Sábados y Domingos de 11:00 a 15:00</li>
+                </ul>
+            </div>
+            <div class="contactos animated fadeIn">
+                <p>CONTACTOS</p>
+                <ul>
+                    <li><i class="fas fa-phone"></i> (261) 123-4567</li>
+                    <li><i class="fab fa-whatsapp"></i> (261) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> elbuensabor@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+        <a [routerLink]="['/menu']">
+            <div class="catalogo animated flipInX">
+                <img src="../../../assets/img/landing/4.png" alt="">
+                <p class="texto"><i class="fas fa-hamburger"></i> CATÁLOGO</p>
+            </div>
+        </a>
+    </div>  
+   
+</div>
